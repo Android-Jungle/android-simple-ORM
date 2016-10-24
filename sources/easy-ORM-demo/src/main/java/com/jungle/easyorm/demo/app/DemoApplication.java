@@ -46,7 +46,9 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApp = this;
-        mORMSupporter = new SQLiteORMSupporter(this, getDatabaseFilePath(), 1, mORMListener);
+
+        final int DB_VERSION = 1;
+        mORMSupporter = new SQLiteORMSupporter(this, getDatabaseFilePath(), DB_VERSION, mORMListener);
     }
 
     private SimpleORMDatabaseListener mORMListener = new SimpleORMDatabaseListener() {
