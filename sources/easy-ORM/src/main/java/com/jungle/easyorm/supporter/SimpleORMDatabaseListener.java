@@ -1,7 +1,9 @@
 /**
- * Android Easy ORM Demo project.
+ * Android Easy ORM project.
  *
  * Copyright 2016 Arno Zhang <zyfgood12@163.com>
+ *
+ * Date 2015/08/19
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +18,26 @@
  * limitations under the License.
  */
 
-package com.jungle.easyorm.demo;
+package com.jungle.easyorm.supporter;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.database.sqlite.SQLiteDatabase;
 
-public class MainActivity extends AppCompatActivity {
+public class SimpleORMDatabaseListener implements ORMDatabaseListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreated(ORMSupporter supporter, SQLiteDatabase db) {
+        supporter.attachDatabase(db);
+    }
 
-        setContentView(R.layout.activity_main);
+    @Override
+    public void onUpgrade(
+            ORMSupporter supporter, SQLiteDatabase db,
+            int oldVersion, int newVersion) {
+
+        supporter.attachDatabase(db);
+    }
+
+    @Override
+    public void onLoadComplete(ORMSupporter supporter) {
     }
 }

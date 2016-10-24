@@ -46,10 +46,12 @@ public class SQLiteORMSupporter implements ORMSupporter {
     private boolean mIsClosed = false;
     private SQLiteOpenHelper mDBHelper;
     private SQLiteDatabase mDatabase;
-    private Set<String> mTableCache = new HashSet<String>();
+    private Set<String> mTableCache = new HashSet<>();
 
 
-    public SQLiteORMSupporter(Context context, String dbFilePath, int dbVersion, ORMDatabaseListener dbListener) {
+    public SQLiteORMSupporter(
+            Context context, String dbFilePath,
+            int dbVersion, ORMDatabaseListener dbListener) {
 
         mDBHelper = new ORMDatabaseOpenHelper(
                 context, dbFilePath, dbVersion, this, dbListener);

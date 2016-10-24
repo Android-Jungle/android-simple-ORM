@@ -16,17 +16,19 @@
  * limitations under the License.
  */
 
-package com.jungle.easyorm.demo;
+package com.jungle.easyorm.demo.data;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import com.jungle.easyorm.BaseEntity;
+import com.jungle.easyorm.constraint.NotNull;
+import com.jungle.easyorm.constraint.PrimaryKey;
 
-public class MainActivity extends AppCompatActivity {
+public class Student extends BaseEntity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @PrimaryKey
+    @NotNull
+    public String mId;
 
-        setContentView(R.layout.activity_main);
-    }
+    public String mName;
+    public int mAge;
+    public double mScore;
 }
