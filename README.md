@@ -76,7 +76,7 @@ ORMSupporter supporter = new SQLiteORMSupporter(context, dbFilePath, DB_VERSION,
     public void onCreated(ORMSupporter supporter, SQLiteDatabase db) {
         super.onCreated(supporter, db);
 
-		// create table.
+        // create table.
         supporter.createTable(GeneralAccountInfo.class);
     }
 
@@ -84,11 +84,11 @@ ORMSupporter supporter = new SQLiteORMSupporter(context, dbFilePath, DB_VERSION,
     public void onUpgrade(ORMSupporter supporter, SQLiteDatabase db, int oldVersion, int newVersion) {
         super.onUpgrade(supporter, db, oldVersion, newVersion);
 
-		// drop unused table.
+        // drop unused table.
         supporter.drop(DownloadItem.class);
 
-		// upgrade logic.
-		if (oldVersion == 4 && newVersion == 5) {
+        // upgrade logic.
+        if (oldVersion == 4 && newVersion == 5) {
             // ...
         }
     }
@@ -177,7 +177,7 @@ public class TextMessage extends BaseMessage {
 
     private String mText;
 
-	public TextMessage() {
+    public TextMessage() {
         // ...
     }
 
@@ -210,7 +210,7 @@ public class PictureMessage extends BaseMessage {
     public String mImageThumbUrl;
     public String mImageUrl;
 
-	public PictureMessage() {
+    public PictureMessage() {
         // ...
     }
 
@@ -236,7 +236,7 @@ List<BaseMessage> messages = supporter.query(BaseMessage.class, tableName);
 
 for (BaseMessage msg : messages) {
     if (msg instance TextMessage) {
-	    TextMessage text = (TextMessage) msg;
+        TextMessage text = (TextMessage) msg;
         // ...
     }
 }
