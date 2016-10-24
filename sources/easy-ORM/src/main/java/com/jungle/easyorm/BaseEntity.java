@@ -20,6 +20,8 @@
 
 package com.jungle.easyorm;
 
+import com.jungle.easyorm.utils.EntityUtils;
+
 import java.util.List;
 
 public abstract class BaseEntity {
@@ -64,7 +66,7 @@ public abstract class BaseEntity {
     }
 
     public String getTableName() {
-        return getClass().getSimpleName();
+        return EntityUtils.getTableName(getClass());
     }
 
     public void onPreLoad() {
