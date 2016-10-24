@@ -29,6 +29,7 @@ import com.jungle.easyorm.constraint.DefaultNull;
 import com.jungle.easyorm.constraint.ForeignKey;
 import com.jungle.easyorm.constraint.NotColumnField;
 import com.jungle.easyorm.constraint.NotNull;
+import com.jungle.easyorm.constraint.ORMTable;
 import com.jungle.easyorm.constraint.PrimaryKey;
 import com.jungle.easyorm.constraint.Unique;
 import com.jungle.easyorm.constraint.UniqueField;
@@ -161,6 +162,14 @@ public class EntityUtils {
     }
 
     public static String getTableName(Class<? extends BaseEntity> clazz) {
+        if (clazz.isAnnotationPresent(ORMTable.class)) {
+            ORMTable table = clazz.getAnnotation(ORMTable.class);
+            String tableName = table.value();
+            if (!TextUtils.isEmpty(tableName)) {
+                return tableName;
+            }
+        }
+
         try {
             return clazz.newInstance().getTableName();
         } catch (InstantiationException e) {
