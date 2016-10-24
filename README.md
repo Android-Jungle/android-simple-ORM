@@ -96,6 +96,15 @@ ORMSupporter supporter = new SQLiteORMSupporter(context, dbFilePath, DB_VERSION,
         }
     }
 });
+
+
+// load data
+List<GeneralAccountInfo> accouns = supporter.query(GeneralAccountInfo.class);
+
+List<GeneralAccountInfo> accouns = supporter.queryByCondition(
+    GeneralAccountInfo.class, BaseEntity.and("id = 12458", "registerTime < 1477302247"));
+
+// ...
 ```
 
 ### 7、表定义 & 使用示例
