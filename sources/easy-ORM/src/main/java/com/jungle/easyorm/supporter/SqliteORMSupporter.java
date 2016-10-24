@@ -49,15 +49,25 @@ public class SQLiteORMSupporter implements ORMSupporter {
     private Set<String> mTableCache = new HashSet<>();
 
 
+    public SQLiteORMSupporter() {
+    }
+
     public SQLiteORMSupporter(
             Context context, String dbFilePath,
-            int dbVersion, ORMDatabaseListener dbListener) {
+            int dbVersion, ORMDatabaseListener listener) {
+
+        initORM(context, dbFilePath, dbVersion, listener);
+    }
+
+    public void initORM(
+            Context context, String dbFilePath,
+            int dbVersion, ORMDatabaseListener listener) {
 
         mDBHelper = new ORMDatabaseOpenHelper(
-                context, dbFilePath, dbVersion, this, dbListener);
+                context, dbFilePath, dbVersion, this, listener);
 
         attachDatabase(mDBHelper.getWritableDatabase());
-        dbListener.onLoadComplete(this);
+        listener.onLoadComplete(this);
     }
 
     @Override
