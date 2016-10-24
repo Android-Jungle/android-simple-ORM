@@ -10,7 +10,7 @@
 - 接口众多；
 - 利用反射自动 Load & Save。
 
-由于利用 `反射`，显然它的性能不及如 [greenDAO](https://github.com/greenrobot/greenDAO) 这种编译型 ORM 框架。但它的易用性是一个方便的点——你可以在你的工作中综合考虑采用。如果你只是比较简单的数据存储，对性能要求并没有特别高，你可以用 `android-easy-ORM`。
+由于是动态 `反射` 型库，显然它的性能不及如 [greenDAO](https://github.com/greenrobot/greenDAO) 这种编译型 ORM 框架。但它的易用性是一个方便的点——你可以在你的工作中综合考虑采用。如果你只是比较简单的数据存储，对性能要求并没有特别高，你可以用 `android-easy-ORM`。
 
 ### 2、使用方法
 
@@ -72,6 +72,7 @@ final int DB_VERSION = 1;
 String dbFilePath = getDatabaseFilePath();
 
 ORMSupporter supporter = new SQLiteORMSupporter(context, dbFilePath, DB_VERSION, new SimpleORMDatabaseListener() {
+
     @Override
     public void onCreated(ORMSupporter supporter, SQLiteDatabase db) {
         super.onCreated(supporter, db);
@@ -95,7 +96,7 @@ ORMSupporter supporter = new SQLiteORMSupporter(context, dbFilePath, DB_VERSION,
 });
 ```
 
-### 7、表定义示例
+### 7、表定义 & 使用示例
 
 结合使用表字段的 `UseParentFields` 和 `BaseEntity.toRealEntity` 方法，可以实现一些特殊效果。下面是一个例子：
 
@@ -166,7 +167,9 @@ public class BaseMessage extends BaseEntity {
 }
 ```
 
-我们定义了一个基础的聊天消息，而子消息类型有 `TextMessage` 、`PictureMessage` 多种。 消息体在 `mMsgContent` 这个字段里面。我们希望从数据库获取消息时，拿到的消息可以灵活转换为对应的 Java 对象。我们可以看出在 **`toRealEntity`** 方法里面，通过 `mMessageType` 做了转换。子消息如下：
+我们定义了一个基础的聊天消息，而子消息类型有 `TextMessage` 、`PictureMessage` 多种。 消息体在 `mMsgContent` 这个字段里面。我们希望从数据库获取消息时，拿到的消息可以灵活转换为对应的 Java 对象。我们可以看出在 **`toRealEntity`** 方法里面，通过 `mMessageType` 做了转换。
+
+子消息定义如下：
 
 ```java
 /*
