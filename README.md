@@ -1,7 +1,5 @@
 # android-easy-ORM 简介
 
-@(Technical)[Android|ORM]
-
 ### 1、简介
 
 `android-easy-ORM` 如你所见，是一款 Android 平台上基于 SQLite 的**简易** ORM 框架。特点如下：
