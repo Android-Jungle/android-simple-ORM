@@ -67,72 +67,64 @@ public class EntityUtils {
 
 
     static {
-        FieldHelper boolHelper = new FieldHelper(
-                "INTEGER", new FieldCursorHelper() {
+
+        FieldHelper boolHelper = new FieldHelper("INTEGER", new FieldCursorHelper() {
             @Override
             public Boolean parseCursor(Cursor cursor, int columnIndex) {
                 return cursor.getInt(columnIndex) != 0;
             }
         });
 
-        FieldHelper byteHelper = new FieldHelper(
-                "INTEGER", new FieldCursorHelper() {
+        FieldHelper byteHelper = new FieldHelper("INTEGER", new FieldCursorHelper() {
             @Override
             public Byte parseCursor(Cursor cursor, int columnIndex) {
                 return (byte) cursor.getInt(columnIndex);
             }
         });
 
-        FieldHelper shortHelper = new FieldHelper(
-                "INTEGER", new FieldCursorHelper() {
+        FieldHelper shortHelper = new FieldHelper("INTEGER", new FieldCursorHelper() {
             @Override
             public Short parseCursor(Cursor cursor, int columnIndex) {
                 return (short) cursor.getInt(columnIndex);
             }
         });
 
-        FieldHelper intHelper = new FieldHelper(
-                "INTEGER", new FieldCursorHelper() {
+        FieldHelper intHelper = new FieldHelper("INTEGER", new FieldCursorHelper() {
             @Override
             public Integer parseCursor(Cursor cursor, int columnIndex) {
                 return cursor.getInt(columnIndex);
             }
         });
 
-        FieldHelper integerHelper = new FieldHelper(
-                "INTEGER", new FieldCursorHelper() {
+        FieldHelper integerHelper = new FieldHelper("INTEGER", new FieldCursorHelper() {
             @Override
             public Long parseCursor(Cursor cursor, int columnIndex) {
                 return cursor.getLong(columnIndex);
             }
         });
 
-        FieldHelper floatHelper = new FieldHelper(
-                "REAL", new FieldCursorHelper() {
+        FieldHelper floatHelper = new FieldHelper("REAL", new FieldCursorHelper() {
             @Override
             public Float parseCursor(Cursor cursor, int columnIndex) {
                 return cursor.getFloat(columnIndex);
             }
         });
 
-        FieldHelper doubleHelper = new FieldHelper(
-                "REAL", new FieldCursorHelper() {
+        FieldHelper doubleHelper = new FieldHelper("REAL", new FieldCursorHelper() {
             @Override
             public Double parseCursor(Cursor cursor, int columnIndex) {
                 return cursor.getDouble(columnIndex);
             }
         });
 
-        FieldHelper stringHelper = new FieldHelper(
-                "TEXT", new FieldCursorHelper() {
+        FieldHelper stringHelper = new FieldHelper("TEXT", new FieldCursorHelper() {
             @Override
             public String parseCursor(Cursor cursor, int columnIndex) {
                 return cursor.getString(columnIndex);
             }
         });
 
-        FieldHelper blobHelper = new FieldHelper(
-                "BLOB", new FieldCursorHelper() {
+        FieldHelper blobHelper = new FieldHelper("BLOB", new FieldCursorHelper() {
             @Override
             public byte[] parseCursor(Cursor cursor, int columnIndex) {
                 return cursor.getBlob(columnIndex);
