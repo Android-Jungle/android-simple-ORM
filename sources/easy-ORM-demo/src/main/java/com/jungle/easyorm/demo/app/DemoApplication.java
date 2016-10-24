@@ -45,6 +45,7 @@ public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        mApp = this;
         mORMSupporter = new SQLiteORMSupporter(this, getDatabaseFilePath(), 1, mORMListener);
     }
 

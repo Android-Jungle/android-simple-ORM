@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">easy-ORM-demo</string>
+    <string name="id">Student Id</string>
+    <string name="tips">Add new student:</string>
+    <string name="name">Student Name</string>
+    <string name="age">Student Age</string>
+    <string name="score">Student Score</string>
+    <string name="add">Add Student</string>
+    <string name="student_list_title">Student List</string>
 </resources>

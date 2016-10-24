@@ -30,5 +30,5 @@ public class Student extends BaseEntity {
 
     public String mName;
     public int mAge;
-    public double mScore;
+    public float mScore;
 }

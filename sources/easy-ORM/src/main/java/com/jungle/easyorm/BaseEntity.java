@@ -36,6 +36,9 @@ public abstract class BaseEntity {
     private BaseEntity.State mState = BaseEntity.State.New;
 
 
+    public BaseEntity() {
+    }
+
     public BaseEntity toRealEntity() {
         return this;
     }
