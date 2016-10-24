@@ -25,14 +25,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.jungle.easyorm.demo.app.DemoApplication;
 import com.jungle.easyorm.demo.data.Student;
 import com.jungle.easyorm.supporter.ORMSupporter;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class StudentsListActivity extends AppCompatActivity {
@@ -67,11 +70,43 @@ public class StudentsListActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    private void deleteStudent(String id) {
+        ORMSupporter supporter = DemoApplication.getApp().getORMSupporter();
+        if (!supporter.removeByPrimaryKey(Student.class, id)) {
+            showToast("Delete student FAILED!");
+            return;
+        }
+
+        showToast("Delete student successfully!");
+
+        for (Iterator<Student> iterator = mStudentList.iterator(); iterator.hasNext(); ) {
+            Student student = iterator.next();
+            if (TextUtils.equals(student.mId, id)) {
+                iterator.remove();
+            }
+        }
+
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
 
     private class ItemHolder extends RecyclerView.ViewHolder {
 
-        public ItemHolder(View itemView) {
+        public ItemHolder(final View itemView) {
             super(itemView);
+
+            itemView.findViewById(R.id.delete_student).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String id = (String) itemView.getTag();
+                            deleteStudent(id);
+                        }
+                    });
         }
 
         public void update(Student student) {
@@ -84,6 +119,8 @@ public class StudentsListActivity extends AppCompatActivity {
             nameView.setText(student.mName);
             ageView.setText(String.valueOf(student.mAge));
             scoreView.setText(String.valueOf(student.mScore));
+
+            itemView.setTag(student.mId);
         }
     }
 

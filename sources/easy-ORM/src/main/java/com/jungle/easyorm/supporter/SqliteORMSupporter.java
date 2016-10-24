@@ -577,7 +577,7 @@ public class SQLiteORMSupporter implements ORMSupporter {
 
         int effectRows = mDatabase.delete(
                 tableName, primaryKey.getName() + "=?",
-                new String[]{String.valueOf(primaryKey)});
+                new String[]{String.valueOf(primary)});
 
         return effectRows > 0;
     }

@@ -7,4 +7,5 @@
     <string name="score">Student Score</string>
     <string name="add">Add Student</string>
     <string name="student_list_title">Student List</string>
+    <string name="student_list">View Student List</string>
 </resources>
