@@ -224,14 +224,14 @@ public class SQLiteORMSupporter implements ORMSupporter {
 
     @Override
     public <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, Class<? extends BaseEntity> clazz) {
+            Class<? extends BaseEntity> clazz, Class<T> primaryKeyClazz) {
 
-        return queryPrimaryKeyList(primaryKeyClazz, clazz, null, null);
+        return queryPrimaryKeyList(clazz, primaryKeyClazz, null, null);
     }
 
     @Override
     public <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, Class<? extends BaseEntity> clazz,
+            Class<? extends BaseEntity> clazz, Class<T> primaryKeyClazz,
             String condition, String constraint) {
 
         String tableName = EntityUtils.getTableName(clazz);
@@ -239,7 +239,7 @@ public class SQLiteORMSupporter implements ORMSupporter {
     }
 
     @Override
-    public <T> List<T> queryPrimaryKeyList(Class<T> primaryKeyClazz, BaseEntity entity) {
+    public <T> List<T> queryPrimaryKeyList(BaseEntity entity, Class<T> primaryKeyClazz) {
         return queryPrimaryKeyList(primaryKeyClazz, entity.getTableName(), entity.getClass());
     }
 
@@ -558,31 +558,6 @@ public class SQLiteORMSupporter implements ORMSupporter {
     }
 
     @Override
-    public boolean removeByPrimaryKey(
-            Class<? extends BaseEntity> clazz, Object primary) {
-
-        if (mIsClosed) {
-            return false;
-        }
-
-        String tableName = EntityUtils.getTableName(clazz);
-        if (TextUtils.isEmpty(tableName)) {
-            return false;
-        }
-
-        Field primaryKey = EntityUtils.getPrimaryKeyField(clazz);
-        if (primaryKey == null) {
-            return false;
-        }
-
-        int effectRows = mDatabase.delete(
-                tableName, primaryKey.getName() + "=?",
-                new String[]{String.valueOf(primary)});
-
-        return effectRows > 0;
-    }
-
-    @Override
     public boolean remove(BaseEntity entity) {
         if (mIsClosed || entity == null) {
             return false;
@@ -652,6 +627,31 @@ public class SQLiteORMSupporter implements ORMSupporter {
     @Override
     public boolean removeAll(String tableName) {
         return remove(tableName, null);
+    }
+
+    @Override
+    public boolean removeByPrimaryKey(
+            Class<? extends BaseEntity> clazz, Object primary) {
+
+        if (mIsClosed) {
+            return false;
+        }
+
+        String tableName = EntityUtils.getTableName(clazz);
+        if (TextUtils.isEmpty(tableName)) {
+            return false;
+        }
+
+        Field primaryKey = EntityUtils.getPrimaryKeyField(clazz);
+        if (primaryKey == null) {
+            return false;
+        }
+
+        int effectRows = mDatabase.delete(
+                tableName, primaryKey.getName() + "=?",
+                new String[]{String.valueOf(primary)});
+
+        return effectRows > 0;
     }
 
     @Override
