@@ -49,24 +49,21 @@ public class EntityUtils {
 
 
     public static class FieldHelper {
-        public FieldHelper(String desc, FieldCursorHelper helper) {
-            mFieldSQLDesc = desc;
+        public FieldHelper(String type, FieldCursorHelper helper) {
+            mFieldType = type;
             mHelper = helper;
         }
 
-        public String mFieldSQLDesc;
+        public String mFieldType;
         public FieldCursorHelper mHelper;
     }
 
 
-    private static Map<Class<?>, FieldHelper> mFieldHelperList =
-            new HashMap<Class<?>, FieldHelper>();
+    private static Map<Class<?>, FieldHelper> mFieldHelperList = new HashMap<>();
 
-    private static Map<Class<? extends BaseEntity>, List<Field>> mCacheFields =
-            new HashMap<Class<? extends BaseEntity>, List<Field>>();
+    private static Map<Class<? extends BaseEntity>, List<Field>> mCacheFields = new HashMap<>();
 
-    private static Map<Class<? extends BaseEntity>, Field> mCachePrimaryKeys =
-            new HashMap<Class<? extends BaseEntity>, Field>();
+    private static Map<Class<? extends BaseEntity>, Field> mCachePrimaryKeys = new HashMap<>();
 
 
     static {
@@ -226,8 +223,15 @@ public class EntityUtils {
             FieldHelper type = mFieldHelperList.get(f.getType());
 
             if (type != null) {
-                builder.append(name).append(" ").append(type.mFieldSQLDesc);
+                //
+                // name TYPE
+                //
+                builder.append(name).append(" ").append(type.mFieldType);
+
                 if (!hasCompositeKey) {
+                    //
+                    // when has composite-key, skip PRIMARY-KEY.
+                    //
                     if (f.isAnnotationPresent(PrimaryKey.class)) {
                         builder.append(" PRIMARY KEY");
 
@@ -269,6 +273,9 @@ public class EntityUtils {
         }
 
         if (hasCompositeKey) {
+            //
+            // CONSTRAINT composite_key PRIMARY KEY (field1, field2, ...)
+            //
             builder.append(", CONSTRAINT ").append(compositePrimaryKey).append(" PRIMARY KEY (");
             int keyCount = compositePrimaryKeys.size();
             for (int i = 0; i < keyCount; ++i) {
