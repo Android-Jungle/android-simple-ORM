@@ -31,8 +31,7 @@ public class SimpleORMDatabaseListener implements ORMDatabaseListener {
 
     @Override
     public void onUpgrade(
-            ORMSupporter supporter, SQLiteDatabase db,
-            int oldVersion, int newVersion) {
+            ORMSupporter supporter, SQLiteDatabase db, int oldVersion, int newVersion) {
 
         supporter.attachDatabase(db);
     }

@@ -314,8 +314,7 @@ public class EntityUtils {
         return clazz;
     }
 
-    public static List<Field> getEntityFields(
-            Class<? extends BaseEntity> clazz) {
+    public static List<Field> getEntityFields(Class<? extends BaseEntity> clazz) {
 
         clazz = getEntityClass(clazz);
 

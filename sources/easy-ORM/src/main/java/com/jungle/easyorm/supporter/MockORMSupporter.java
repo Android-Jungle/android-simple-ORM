@@ -99,20 +99,20 @@ public class MockORMSupporter implements ORMSupporter {
 
     @Override
     public <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, Class<? extends BaseEntity> clazz) {
+            Class<? extends BaseEntity> clazz, Class<T> primaryKeyClazz) {
         return null;
     }
 
     @Override
     public <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, Class<? extends BaseEntity> clazz,
+            Class<? extends BaseEntity> clazz, Class<T> primaryKeyClazz,
             String condition, String constraint) {
         return null;
     }
 
     @Override
     public <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, BaseEntity entity) {
+            BaseEntity entity, Class<T> primaryKeyClazz) {
         return null;
     }
 
@@ -189,12 +189,6 @@ public class MockORMSupporter implements ORMSupporter {
     }
 
     @Override
-    public <T extends BaseEntity> List<T> query(
-            Class<? extends BaseEntity> clazz, String tableName) {
-        return null;
-    }
-
-    @Override
     public <T extends BaseEntity> T queryByPrimary(
             Class<? extends BaseEntity> clazz, String tableName, Object primary) {
         return null;
@@ -203,6 +197,12 @@ public class MockORMSupporter implements ORMSupporter {
     @Override
     public <T extends BaseEntity> List<T> queryByConditionWithTableName(
             Class<? extends BaseEntity> clazz, String tableName, String condition, String constraint) {
+        return null;
+    }
+
+    @Override
+    public <T extends BaseEntity> List<T> query(
+            Class<? extends BaseEntity> clazz, String tableName) {
         return null;
     }
 
@@ -224,11 +224,6 @@ public class MockORMSupporter implements ORMSupporter {
     }
 
     @Override
-    public boolean removeByPrimaryKey(Class<? extends BaseEntity> clazz, Object primary) {
-        return false;
-    }
-
-    @Override
     public boolean remove(Class<? extends BaseEntity> clazz, String condition) {
         return false;
     }
@@ -245,6 +240,11 @@ public class MockORMSupporter implements ORMSupporter {
 
     @Override
     public boolean removeAll(String tableName) {
+        return false;
+    }
+
+    @Override
+    public boolean removeByPrimaryKey(Class<? extends BaseEntity> clazz, Object primary) {
         return false;
     }
 

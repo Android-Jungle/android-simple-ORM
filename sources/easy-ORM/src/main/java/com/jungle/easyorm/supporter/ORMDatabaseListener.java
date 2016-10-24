@@ -26,8 +26,7 @@ public interface ORMDatabaseListener {
 
     void onCreated(ORMSupporter supporter, SQLiteDatabase db);
 
-    void onUpgrade(ORMSupporter supporter, SQLiteDatabase db,
-            int oldVersion, int newVersion);
+    void onUpgrade(ORMSupporter supporter, SQLiteDatabase db, int oldVersion, int newVersion);
 
     void onLoadComplete(ORMSupporter supporter);
 }

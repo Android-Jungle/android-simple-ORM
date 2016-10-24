@@ -60,6 +60,9 @@ public interface ORMSupporter {
 
     boolean drop(String tableName);
 
+    //
+    // exec SQL statement.
+    //
     boolean execSQL(String sql);
 
     boolean execSQL(String sql, Object[] args);
@@ -68,14 +71,14 @@ public interface ORMSupporter {
     // query PRIMARY KEY list
     //
     <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, Class<? extends BaseEntity> clazz);
+            Class<? extends BaseEntity> clazz, Class<T> primaryKeyClazz);
 
     <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, Class<? extends BaseEntity> clazz,
+            Class<? extends BaseEntity> clazz, Class<T> primaryKeyClazz,
             String condition, String constraint);
 
     <T> List<T> queryPrimaryKeyList(
-            Class<T> primaryKeyClazz, BaseEntity entity);
+            BaseEntity entity, Class<T> primaryKeyClazz);
 
     //
     // raw query
@@ -130,19 +133,19 @@ public interface ORMSupporter {
 
 
     //
-    // queryByTableName
+    // query by table name
     //
     <T extends BaseEntity> T queryByPosition(
             Class<? extends BaseEntity> clazz, String tableName, int position);
-
-    <T extends BaseEntity> List<T> query(
-            Class<? extends BaseEntity> clazz, String tableName);
 
     <T extends BaseEntity> T queryByPrimary(
             Class<? extends BaseEntity> clazz, String tableName, Object primary);
 
     <T extends BaseEntity> List<T> queryByConditionWithTableName(
             Class<? extends BaseEntity> clazz, String tableName, String condition, String constraint);
+
+    <T extends BaseEntity> List<T> query(
+            Class<? extends BaseEntity> clazz, String tableName);
 
     <T extends BaseEntity> List<T> query(
             Class<? extends BaseEntity> clazz, String tableName, int count);
@@ -156,8 +159,6 @@ public interface ORMSupporter {
     //
     boolean remove(BaseEntity entity);
 
-    boolean removeByPrimaryKey(Class<? extends BaseEntity> clazz, Object primary);
-
     boolean remove(Class<? extends BaseEntity> clazz, String condition);
 
     boolean remove(String tableName, String condition);
@@ -165,6 +166,8 @@ public interface ORMSupporter {
     boolean removeAll(Class<? extends BaseEntity> clazz);
 
     boolean removeAll(String tableName);
+
+    boolean removeByPrimaryKey(Class<? extends BaseEntity> clazz, Object primary);
 
 
     //
