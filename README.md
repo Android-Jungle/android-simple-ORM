@@ -14,6 +14,10 @@
 
 ### 2、使用方法
 
+```java
+compile 'com.jungle.easyorm:android-easy-ORM:1.0'
+```
+
 ### 3、接口
 
 这里只展示一些接口，其他接口具体请参考代码。
