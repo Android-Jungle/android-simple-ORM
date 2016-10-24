@@ -8,7 +8,7 @@
 - 接口众多；
 - 利用反射自动 Load & Save。
 
-由于是动态 `反射` 型库，显然它的性能不及如 [greenDAO](https://github.com/greenrobot/greenDAO) 这种编译型 ORM 框架。但它的易用性是一个方便的点——你可以在你的工作中综合考虑采用。如果你只是比较简单的数据存储，对性能要求并没有特别高，你可以用 `android-easy-ORM`。
+由于是动态 `反射` 型库，显然它的性能不及如 [greenDAO](https://github.com/greenrobot/greenDAO) 这种编译型 ORM 框架。但它的易用性是一个方便的点——你可以在你的工作中综合考虑采用。如果你只是比较简单的数据存储，数据加载/保存时耗用的反射的那点性能对你的系统影响在可接受范围内，你可以考虑用 `android-easy-ORM`。
 
 ### 2、使用方法
 
@@ -18,7 +18,7 @@ compile 'com.jungle.easyorm:android-easy-ORM:1.0'
 
 ### 3、接口
 
-这里只展示一些接口，其他接口具体请参考代码。
+这里只展示部分接口，其他接口具体请参考代码。
 
 |接口|接口描述|
 |---|---|
