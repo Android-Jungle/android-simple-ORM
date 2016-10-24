@@ -315,7 +315,6 @@ public class EntityUtils {
     }
 
     public static List<Field> getEntityFields(Class<? extends BaseEntity> clazz) {
-
         clazz = getEntityClass(clazz);
 
         List<Field> result = mCacheFields.get(clazz);
