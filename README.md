@@ -36,20 +36,20 @@ compile 'com.jungle.easyorm:android-easy-ORM:1.0'
 
 ### 4、表定义
 
-表的定义比较简单，使用 `POJO` 类定义即可。然后采用一些字段约束。约束用 Java 注解表述，具体列表如下：
+表的定义比较简单，使用类似 `POJO` 的类定义即可。然后采用一些字段约束。约束用 Java 注解表述，具体列表如下：
 
 |注解|约束|
 |---|---|
 |ORMTable(`tableName`)|表名|
 |PrimaryKey|主键|
-|ForeignKey(`clazz`)|外键|
-|CompositePrimaryKey|联合主键|
+|ForeignKey(`clazz`)|外键（将另一个 clazz 的主键作为外键）|
+|CompositePrimaryKey|联合主键，通过注解一个类的多个字段，这些字段共同构成联合主键|
 |AutoIncrement|自增字段|
-|NotNull|类似于 “FIELD TEXT **NOT NULL**”|
-|DefaultNull(`defValue`)|类似于 “FIELD TEXT **DEFAULT defValue**”|
-|UNIQUE|类似于 “FIELD TEXT **UNIQUE**”|
-|UniqueField|类似于 “CREATE TABLE tbl(..., **UNIQUE**(FIELD1, FIELD2, FIELD3)) ”|
-|NotColumnField|这个字段非表字段，将在 `Load&Save` 时忽略|
+|NotNull|类似于 “`FIELD TEXT NOT NULL`”|
+|DefaultNull(`defValue`)|类似于 “`FIELD TEXT DEFAULT defValue`”|
+|Unique|类似于 “`FIELD TEXT UNIQUE`”|
+|UniqueField|类似于 “`CREATE TABLE tbl(..., UNIQUE(FIELD1, FIELD2, FIELD3)) `”|
+|NotColumnField|这个字段非表字段，将在 `Load & Save` 时忽略|
 |UseParentFields|将使用父类的所有字段创建表，忽略本类的所有字段|
 
 ### 5、BaseEntity 介绍
@@ -146,6 +146,11 @@ public class BaseMessage extends BaseEntity {
     public BaseMessage(BaseMessage msg) {
         mMsgLocalId = msg.mMsgLocalId;
         // etc ...
+
+        decodeMessage();
+    }
+
+    public void decodeMessage() {
     }
 
     @Override
@@ -199,6 +204,7 @@ public class TextMessage extends BaseMessage {
         super(message);
     }
 
+    @Override
     public void decodeMessage() {
         try {
             PbMessage.Text text = PbMessage.Text.parseFrom(mMsgContent);
@@ -232,6 +238,7 @@ public class PictureMessage extends BaseMessage {
         super(message);
     }
 
+    @Override
     public void decodeMessage() {
         // ...
     }
