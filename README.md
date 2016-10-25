@@ -45,10 +45,10 @@ compile 'com.jungle.easyorm:android-easy-ORM:1.0'
 |ForeignKey(`clazz`)|外键（将另一个 clazz 的主键作为外键）|
 |CompositePrimaryKey|联合主键，通过注解一个类的多个字段，这些字段共同构成联合主键|
 |AutoIncrement|自增字段|
-|NotNull|类似于 “`FIELD TEXT **NOT NULL**`”|
-|DefaultNull(`defValue`)|类似于 “`FIELD TEXT **DEFAULT defValue**`”|
-|Unique|类似于 “`FIELD TEXT **UNIQUE**`”|
-|UniqueField|类似于 “`CREATE TABLE tbl(..., **UNIQUE**(FIELD1, FIELD2, FIELD3)) `”|
+|NotNull|类似于 “`FIELD TEXT NOT NULL`”|
+|DefaultNull(`defValue`)|类似于 “`FIELD TEXT DEFAULT defValue`”|
+|Unique|类似于 “`FIELD TEXT UNIQUE`”|
+|UniqueField|类似于 “`CREATE TABLE tbl(..., UNIQUE(FIELD1, FIELD2, FIELD3)) `”|
 |NotColumnField|这个字段非表字段，将在 `Load & Save` 时忽略|
 |UseParentFields|将使用父类的所有字段创建表，忽略本类的所有字段|
 
