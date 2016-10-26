@@ -1,26 +1,26 @@
-# android-easy-ORM 简介
+# android-simple-ORM 简介
 
 ### 1、简介
 
-`android-easy-ORM` 如你所见，是一款 Android 平台上基于 SQLite 的**简易** ORM 框架。特点如下：
+`android-simple-ORM` 如你所见，是一款 Android 平台上基于 SQLite 的**简易** ORM 框架。特点如下：
 
 - 方便易用；
 - 接口众多；
 - 利用反射自动 Load & Save。
 
-由于是动态 `反射` 型库，显然它的性能不及如 [greenDAO](https://github.com/greenrobot/greenDAO) 这种编译型 ORM 框架。但它的易用性是一个方便的点——你可以在你的工作中综合考虑采用。如果你只是比较简单的数据存储，数据加载/保存时耗用的反射的那点性能对你的系统影响在可接受范围内，你可以考虑用 `android-easy-ORM`。
+由于是动态 `反射` 型库，显然它的性能不及如 [greenDAO](https://github.com/greenrobot/greenDAO) 这种编译型 ORM 框架。但它的易用性是一个方便的点——你可以在你的工作中综合考虑采用。如果你只是比较简单的数据存储，数据加载/保存时耗用的反射的那点性能对你的系统影响在可接受范围内，你可以考虑用 `android-simple-ORM`。
 
 ### 2、使用方法
 
 ```java
-compile 'com.jungle.easyorm:android-easy-ORM:1.0'
+compile 'com.jungle.simpleorm:android-simple-ORM:1.0'
 ```
 
 混淆 Proguard 配置如下：
 
 ```
--keep class * extends com.jungle.easyorm.BaseEntity {*;}
--keepclassmembers class * extends com.jungle.easyorm.BaseEntity {
+-keep class * extends com.jungle.simpleorm.BaseEntity {*;}
+-keepclassmembers class * extends com.jungle.simpleorm.BaseEntity {
     *;
 }
 ```
@@ -63,7 +63,7 @@ compile 'com.jungle.easyorm:android-easy-ORM:1.0'
 
 ### 5、BaseEntity 介绍
 
-表定义类称为 `Entity` 实体，所有的 Entity 类均需派生自 `com.jungle.easyorm.BaseEntity`。BaseEntity 有一些方法需要注意：
+表定义类称为 `Entity` 实体，所有的 Entity 类均需派生自 `com.jungle.simpleorm.BaseEntity`。BaseEntity 有一些方法需要注意：
 
 |BaseEntity 方法|用途 & 含义|
 |---|---|
@@ -288,7 +288,7 @@ supporter.replace(msg);
 
 ```
 /**
- * Android Easy ORM project.
+ * Android Simple ORM project.
  *
  * Copyright 2016 Arno Zhang <zyfgood12@163.com>
  *

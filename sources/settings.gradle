@@ -1,1 +1,1 @@
-include ':easy-ORM-demo', ':easy-ORM'
+include ':simple-ORM-demo', ':simple-ORM'
