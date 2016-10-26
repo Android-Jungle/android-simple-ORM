@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">easy-ORM-demo</string>
+    <string name="app_name">simple-ORM-demo</string>
     <string name="id">Student Id</string>
     <string name="tips">Add new student:</string>
     <string name="name">Student Name</string>

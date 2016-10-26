@@ -1,6 +1,6 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jungle.easyorm">
+    package="com.jungle.simpleorm">
 
     <application
         android:allowBackup="true"
