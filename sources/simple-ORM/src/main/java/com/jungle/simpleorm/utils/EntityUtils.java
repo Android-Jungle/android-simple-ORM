@@ -170,15 +170,7 @@ public class EntityUtils {
             }
         }
 
-        try {
-            return clazz.newInstance().getTableName();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return clazz.getSimpleName();
     }
 
     public static String generateCreateStatement(BaseEntity entity) {
