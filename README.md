@@ -16,6 +16,15 @@
 compile 'com.jungle.easyorm:android-easy-ORM:1.0'
 ```
 
+混淆 Proguard 配置如下：
+
+```
+-keep class * extends com.jungle.easyorm.BaseEntity {*;}
+-keepclassmembers class * extends com.jungle.easyorm.BaseEntity {
+    *;
+}
+```
+
 ### 3、接口
 
 这里只展示部分接口，其他接口具体请参考代码。
