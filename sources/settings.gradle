@@ -1,1 +1,1 @@
-include ':simple-ORM-demo', ':simple-ORM'
+include ':simple-ORM-demo', ':android-simple-ORM'
